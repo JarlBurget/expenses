@@ -1,11 +1,8 @@
 import './Card.css';
 
 const Card = (props) => {
-    return (
-        <div className={props.className + ' card'}>
-            {props.children}
-        </div>
-    );
+    const classes = 'card ' + props.className; // Lisame klassi dünaamiliselt
+    return <div className={classes}>{props.children}</div>;
 };
 
 export default Card;

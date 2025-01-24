@@ -4,6 +4,8 @@ import Card from './Card';
 import './Expenses.css';
 
 const Expenses = (props) => {
+    // Lisame kaitse tühja või määramata massiivi jaoks
+
     return (
         <Card className="expenses">
             <ExpenseItem data={props.expenses[0]} />
