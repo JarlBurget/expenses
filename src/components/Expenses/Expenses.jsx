@@ -4,6 +4,15 @@ import Card from '../UI/Card';
 import './Expenses.css';
 
 const Expenses = (props) => {
+  const filterChangeHandler = (selectedYear) => {
+    console.log('Filtered Year in Expenses.js', selectedYear)
+    props.onChangeFilter(selectedYear)
+  } 
+  
+  const filteredExpenses = props.expenses.filter((expense) =>
+    expense.date.getFullYear().toString() === props.selectedYear
+  );
+
     // Lisame kaitse tühja või määramata massiivi jaoks
 
     return (

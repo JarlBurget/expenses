@@ -27,7 +27,9 @@ const ExpenseForm = (props) => {
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData); // Log for debugging
+   // console.log(expenseData); // Log for debugging
+
+    props.onSaveExpenseData(expenseData)
 
     // Clear the input fields
     setEnteredTitle('');
