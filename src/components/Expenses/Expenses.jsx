@@ -1,33 +1,32 @@
-import React, { useState } from 'react';
-import ExpenseItem from './ExpenseItem';
-import Card from '../UI/Card';
-import './Expenses.css';
-import ExpensesFilter from './ExpensesFilter';
+import { useState } from 'react'
+import ExpenseItem from './ExpenseItem.jsx'
+import Card from '../UI/Card.jsx'
+import './Expenses.css'
+import ExpensesFilter from './ExpensesFilter.jsx'
+
+
 
 const Expenses = (props) => {
-  const [filteredYear, setFilteredYear] = useState('2024'); // Algne valitud aasta
+  const [filteredYear, setFilteredYear] = useState('2025')
 
-  const filterChangeHandler = (selectedYear) => {
-    console.log('Filtered Year in Expenses.js', selectedYear); // Kontrollime, milline aasta valiti
-    setFilteredYear(selectedYear); // Uuendame valitud aasta väärtuse
-  };
-
-  // Filtreerime kulud vastavalt valitud aastale
-  const filteredExpenses = props.expenses.filter((expense) =>
-    expense.date.getFullYear().toString() === filteredYear
-  );
+    const filterChangeHandler = (selectedYear) => { 
+      setFilteredYear(selectedYear)
+        console.log(`Year data in Expenses.jsx ${selectedYear}` )
+    }
+    props.expenses.map((expense) => {
+      return <ExpenseItem expenseData={expense}/>
+    })
 
   return (
-    <Card className="expenses">
-      {/* Edastame valitud aasta ja filteri muutmise funktsiooni ExpensesFilter-le */}
-      <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} /> 
-      
-      {/* Kuvame ainult need kulud, mis vastavad filtrile */}
-      {filteredExpenses.map(expense => (
-        <ExpenseItem key={expense.id} data={expense} />
-      ))}
+    <Card className='expenses'>
+        <ExpensesFilter selectedYear={filteredYear} onChangeFilter={filterChangeHandler} />
+        {
+          props.expenses.map((expense) => {
+            return <ExpenseItem expenseData={expense} key={expense.id}/>
+            })
+        }
     </Card>
-  );
-};
+  )
+}
 
 export default Expenses;

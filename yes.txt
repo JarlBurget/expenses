@@ -1,0 +1,6 @@
+const saveExpenseData = (expense) => {
+      setExpenses((previousExpense) => {
+        return [expense, ...previousExpense]
+    )
+    } 
+} 
